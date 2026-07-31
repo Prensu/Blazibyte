@@ -1,12 +1,5 @@
 export type IconName =
-	| "video"
-	| "megaphone"
-	| "scissors"
-	| "sparkles"
-	| "calendar"
-	| "penTool"
-	| "target"
-	| "camera"
+	"video" | "megaphone" | "scissors" | "sparkles" | "calendar" | "penTool" | "target" | "camera"
 
 export interface Service {
 	slug: string
@@ -17,11 +10,7 @@ export interface Service {
 }
 
 export type PortfolioCategory =
-	| "Video Ads"
-	| "Reels & Social"
-	| "Real Estate"
-	| "Events"
-	| "Branding & Design"
+	"Video Ads" | "Reels & Social" | "Real Estate" | "Events" | "Branding & Design"
 
 export interface PortfolioItem {
 	id: string
@@ -40,7 +29,6 @@ export interface TeamMember {
 	id: string
 	name: string
 	role: string
-	bio: string
 	initials: string
 	/** Resolved photo URL — falls back to an initials avatar when missing. */
 	photo?: string

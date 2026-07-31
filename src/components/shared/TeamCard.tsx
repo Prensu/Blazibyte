@@ -29,7 +29,6 @@ export function TeamCard({ member }: TeamCardProps) {
 			)}
 			<h3 className="mt-4 text-lg font-bold text-ink">{member.name}</h3>
 			<p className="text-sm font-semibold text-brand-600">{member.role}</p>
-			<p className="mt-3 text-sm leading-relaxed text-ink-soft">{member.bio}</p>
 		</motion.article>
 	)
 }
