@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
-import { useState } from "react"
 
 import { PlayIcon } from "@/components/ui/icons"
+import { useVideoPlayer } from "@/hooks/useVideoPlayer"
 import { fadeUp } from "@/lib/motion"
 import { cn } from "@/lib/utils"
 import type { PortfolioItem } from "@/types"
@@ -11,7 +11,8 @@ interface PortfolioCardProps {
 }
 
 export function PortfolioCard({ item }: PortfolioCardProps) {
-	const [playing, setPlaying] = useState(false)
+	const { play, stop, isPlaying } = useVideoPlayer()
+	const active = isPlaying(item.id)
 
 	return (
 		<motion.article
@@ -23,19 +24,20 @@ export function PortfolioCard({ item }: PortfolioCardProps) {
 		>
 			{item.videoUrl ? (
 				<div className="relative aspect-video bg-ink">
-					{playing ? (
+					{active ? (
 						<video
 							src={item.videoUrl}
 							poster={item.poster}
 							controls
 							autoPlay
 							playsInline
+							onEnded={stop}
 							className="h-full w-full object-contain"
 						/>
 					) : (
 						<button
 							type="button"
-							onClick={() => setPlaying(true)}
+							onClick={() => play(item.id)}
 							aria-label={`Play ${item.title}`}
 							className="group/play relative block h-full w-full cursor-pointer"
 						>

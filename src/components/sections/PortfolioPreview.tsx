@@ -6,6 +6,7 @@ import { Container } from "@/components/ui/Container"
 import { SectionHeading } from "@/components/ui/SectionHeading"
 import { ArrowRightIcon } from "@/components/ui/icons"
 import { portfolioItems } from "@/data/portfolio"
+import { VideoPlayerProvider } from "@/hooks/useVideoPlayer"
 import { staggerContainer, viewportOnce } from "@/lib/motion"
 
 export function PortfolioPreview() {
@@ -18,17 +19,19 @@ export function PortfolioPreview() {
 					description="A glimpse of the campaigns, reels and event films we’ve crafted for brands across Nepal."
 				/>
 
-				<motion.div
-					variants={staggerContainer}
-					initial="hidden"
-					whileInView="visible"
-					viewport={viewportOnce}
-					className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
-				>
-					{portfolioItems.slice(0, 3).map((item) => (
-						<PortfolioCard key={item.id} item={item} />
-					))}
-				</motion.div>
+				<VideoPlayerProvider>
+					<motion.div
+						variants={staggerContainer}
+						initial="hidden"
+						whileInView="visible"
+						viewport={viewportOnce}
+						className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+					>
+						{portfolioItems.slice(0, 3).map((item) => (
+							<PortfolioCard key={item.id} item={item} />
+						))}
+					</motion.div>
+				</VideoPlayerProvider>
 
 				<div className="mt-10 text-center">
 					<Button to="/portfolio" variant="outline">

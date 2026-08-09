@@ -6,6 +6,7 @@ import { PortfolioCard } from "@/components/shared/PortfolioCard"
 import { Container } from "@/components/ui/Container"
 import { portfolioCategories, portfolioItems } from "@/data/portfolio"
 import { usePageMeta } from "@/hooks/usePageMeta"
+import { VideoPlayerProvider } from "@/hooks/useVideoPlayer"
 import { cn } from "@/lib/utils"
 
 export default function PortfolioPage() {
@@ -51,22 +52,24 @@ export default function PortfolioPage() {
 					</div>
 
 					{/* Grid */}
-					<motion.div layout className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-						<AnimatePresence mode="popLayout">
-							{visibleItems.map((item) => (
-								<motion.div
-									key={item.id}
-									layout
-									initial={{ opacity: 0, scale: 0.9 }}
-									animate={{ opacity: 1, scale: 1 }}
-									exit={{ opacity: 0, scale: 0.9 }}
-									transition={{ duration: 0.3, ease: "easeOut" }}
-								>
-									<PortfolioCard item={item} />
-								</motion.div>
-							))}
-						</AnimatePresence>
-					</motion.div>
+					<VideoPlayerProvider>
+						<motion.div layout className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+							<AnimatePresence mode="popLayout">
+								{visibleItems.map((item) => (
+									<motion.div
+										key={item.id}
+										layout
+										initial={{ opacity: 0, scale: 0.9 }}
+										animate={{ opacity: 1, scale: 1 }}
+										exit={{ opacity: 0, scale: 0.9 }}
+										transition={{ duration: 0.3, ease: "easeOut" }}
+									>
+										<PortfolioCard item={item} />
+									</motion.div>
+								))}
+							</AnimatePresence>
+						</motion.div>
+					</VideoPlayerProvider>
 
 					<p className="mt-10 text-center text-sm text-ink-muted">
 						Want to see full case studies or raw samples? Message us — we’ll share work relevant
